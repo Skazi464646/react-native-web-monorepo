@@ -13,6 +13,7 @@ export const GlobalErrorProvider = ({ children }) => {
     setError(errorMessage);
     if (errorMessage) {
         if(!Platform.OS === 'web'){
+          throw new Error();
             Alert.alert("Error", errorMessage, [{ text: "OK", onPress: () => setError(null) }]);
         }else{
             console.log('error happend')

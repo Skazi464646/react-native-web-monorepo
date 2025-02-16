@@ -3,8 +3,7 @@ import { Image, StyleSheet, Platform, FlatList, View, Text, ActivityIndicator, T
 import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import RNRestart from 'react-native-restart';
-import { shared, useFetchApiResp, useCommonTranslation, i18next, GlobalErrorProvider, useGlobalError } from "shared";
+import {  useFetchApiResp, useCommonTranslation, i18next } from "shared";
 import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -13,13 +12,15 @@ export default function NativeApp() {
     const [language, setLanguage] = useState(i18next.language || "en");
     const [isRTL, setIsRTL] = useState(I18nManager.isRTL)
     const { t } = useCommonTranslation();
-    const {error} = useGlobalError();
+    // const {error,setGlobalError} = useGlobalError();
 
 
     
 
     useEffect(() => {
         console.log('Translated:', t('greeting'));
+        // const caller :any= setGlobalError
+        // caller('error')
     }, [language]);
 
     const changeLanguage = async (lng: string) => {
@@ -49,7 +50,7 @@ export default function NativeApp() {
                         {item.title}
                     </Text>
                     <Text style={[styles.cardSubtitle, { textAlign: isRTL ? 'right' : 'left' }]}>
-                        {t('User ID')}: {item.id}
+                        {t('User ID')}: {t(`${item.id}`)}
                     </Text>
                 </View>
             </View>
