@@ -63,4 +63,5 @@ export const useCommonTranslation = ()=>{
 
 export *  from './translation/index'
 export *  from './globalError/index'
+export *  from './crypto'
 export { default as i18next } from "./translation/index";

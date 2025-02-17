@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo } from 'react';
-import {  useFetchApiResp, useCommonTranslation, i18next } from "shared";
+import {  useFetchApiResp, useCommonTranslation, i18next ,decryptDataAesCbc,encryptDataAesCbc} from "shared";
 import './styles.css'
 
 const UserCard = memo(({ item, isRTL ,translate}) => (
@@ -44,6 +44,11 @@ export default function HomeScreen() {
   useEffect(() => {
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
+    const impData = '8452067674';
+    const encryptValue = encryptDataAesCbc(impData)
+    const decryptValue = decryptDataAesCbc(encryptValue)
+    console.log('encryptValue',encryptValue);
+    console.log('decryptValue',decryptValue);
   }, [language, isRTL]);
 
   const handleLanguageChange = async () => {
